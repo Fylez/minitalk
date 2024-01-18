@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:52:42 by lzaengel          #+#    #+#             */
-/*   Updated: 2024/01/18 00:15:19 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:20:08 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_talk(int pid, char *string)
 	}
 }
 
-void	ft_awnser(int signo, siginfo_t *info, void *context)
+void	ft_awnser(int signo)
 {
 	static int	i = 0;
 
@@ -69,20 +69,16 @@ void	ft_awnser(int signo, siginfo_t *info, void *context)
 int	main(int argc, char **argv)
 {
 	int					pid;
-	int					len;
 	struct sigaction	signal;
 
 	if (argc != 3)
 		ft_exit(5);
-	signal.sa_flags = SA_SIGINFO;
-	signal.sa_sigaction = ft_awnser;
+	signal.sa_handler = ft_awnser;
 	if (sigaction(SIGUSR1, &signal, NULL) == -1
 		|| sigaction(SIGUSR2, &signal, NULL) == -1)
 		ft_exit(1);
 	g_strlen = ft_strlen(argv[2]);
 	pid = ft_atoi(argv[1]);
 	ft_talk(pid, argv[2]);
-	while (1)
-		usleep(100);
 	return (0);
 }
