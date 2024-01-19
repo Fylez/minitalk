@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:52:42 by lzaengel          #+#    #+#             */
-/*   Updated: 2024/01/18 15:20:08 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:50:13 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	ft_talk(int pid, char *string)
 				if (kill(pid, SIGUSR2) == -1)
 					ft_exit(3);
 			}
-			usleep(100);
 			string[i] = string[i] >> 1;
 			bit++;
+			pause();
 		}
 		bit = (i++, 0);
 	}
@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
 	if (sigaction(SIGUSR1, &signal, NULL) == -1
 		|| sigaction(SIGUSR2, &signal, NULL) == -1)
 		ft_exit(1);
-	g_strlen = ft_strlen(argv[2]);
+	g_strlen = ft_strlen(argv[2]) * 8;
 	pid = ft_atoi(argv[1]);
 	ft_talk(pid, argv[2]);
 	return (0);
