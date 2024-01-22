@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:52:42 by lzaengel          #+#    #+#             */
-/*   Updated: 2024/01/19 17:50:13 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:44:53 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	ft_talk(int pid, char *string)
 				if (kill(pid, SIGUSR2) == -1)
 					ft_exit(3);
 			}
+			pause();
 			string[i] = string[i] >> 1;
 			bit++;
-			pause();
 		}
 		bit = (i++, 0);
 	}

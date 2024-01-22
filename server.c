@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:52:48 by lzaengel          #+#    #+#             */
-/*   Updated: 2024/01/19 17:55:29 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:44:43 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ void	ft_test(int signo, siginfo_t *info, void *context)
 		b = 1;
 		c = 0;
 	}
-	usleep(100);
+	usleep(500);
 	if (kill(sender, SIGUSR1) == -1)
 		ft_exit();
-
 }
 
 int	main(void)
@@ -57,6 +56,8 @@ int	main(void)
 		return (1);
 	}
 	while (1)
+	{
 		pause();
+	}
 	return (0);
 }
